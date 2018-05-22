@@ -1,0 +1,3 @@
+[submodule "vendor/rio"]
+	path = vendor/rio
+	url = https://github.com/roman/rio

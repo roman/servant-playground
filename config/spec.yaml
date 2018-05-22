@@ -1,0 +1,80 @@
+etc/files:
+  env: APP_CONFIG_PATH
+  paths:
+  - ./config/development.yaml
+  - /etc/servant-playground/integration.yaml
+  - /etc/servant-playground/config.yaml
+
+etc/entries:
+  # There are many other settings that can be overriden
+  # just covering a few basic ones
+  http:
+    port:
+      etc/spec:
+        type: number
+        default: 8080
+        env: APP_HTTP_PORT
+
+    host:
+      etc/spec:
+        type: string
+        default: "0.0.0.0"
+        env: APP_HTTP_HOST
+
+    request_timeout_seconds:
+      etc/spec:
+        type: number
+        default: 30
+        env: APP_HTTP_REQ_TIMEOUT_SECS
+
+
+  database:
+    user:
+      etc/spec:
+        type: string
+        env: APP_DB_USER
+
+    password:
+      etc/spec:
+        type: string
+        sensitive: true
+        env: APP_DB_PASSWORD
+
+    host:
+      etc/spec:
+        type: string
+        env: APP_DB_HOST
+
+    port:
+      etc/spec:
+        type: number
+        env: APP_DB_PORT
+        default: 5432
+
+    database:
+      etc/spec:
+        type: string
+        env: APP_DB_DATABASE
+
+    poolSize:
+      etc/spec:
+        type: number
+        env: APP_DB_POOL_SIZE
+        default: 1
+
+  logger:
+    level:
+      etc/spec:
+        type: string
+        env: APP_LOG_LEVEL
+        default: info
+    handle:
+      etc/spec:
+        type: string
+        env: APP_LOG_HANDLE
+        default: stdout
+    verbose:
+      etc/spec:
+        type: bool
+        env: APP_LOG_VERBOSE
+        default: false

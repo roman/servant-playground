@@ -1,0 +1,8 @@
+database:
+  user: servant-playground
+  database: servant-playground
+  host: localhost
+
+logger:
+  level: debug
+  verbose: true

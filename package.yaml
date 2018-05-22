@@ -1,0 +1,62 @@
+name:                servant-playground
+version:             0.1.0.0
+# synopsis:
+# description:
+homepage:            https://github.com/githubuser/servant-playground#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2018 Author name here
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+
+flags:
+  dev:
+    description: enable development artifacts
+    manual: true
+    default: false
+
+dependencies:
+- base >= 4.7 && < 5
+- rio
+- rio-orphans
+- aeson
+- servant-server
+- wai
+- warp
+
+# database dependencies
+- persistent
+- persistent-postgresql
+- persistent-template
+- monad-logger
+- resource-pool
+
+library:
+  source-dirs: src
+
+executables:
+  servant-playground:
+    ghc-options:      '-threaded -rtsopts -with-rtsopts=-N'
+    source-dirs:      app
+    main:             Main.hs
+    dependencies:
+    - servant-playground
+    # stage-zero configuration dependencies
+    - etc >= 0.4.0.0
+    - componentm >= 0.0.0.2
+    - componentm-devel >= 0.0.0.2
+    - file-embed
+
+tests:
+  servant-playground-tests:
+    source-dirs:      test
+    main:             Spec.hs
+    dependencies:
+    - servant-playground
+    - hspec
+    - hspec-wai
+    - hspec-wai-json
+    - aeson

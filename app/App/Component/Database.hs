@@ -52,6 +52,9 @@ getConnString config =
                        , "port=" <> tshow (port :: Int)
                        , "dbname=" <> db ]
 
+getPoolSize ::
+  (MonadThrow m, Etc.IConfig config) =>
+  config -> m Int
 getPoolSize config =
   Etc.getConfigValue ["database", "poolSize"] config
 

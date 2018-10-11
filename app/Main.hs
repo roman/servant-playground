@@ -4,7 +4,7 @@
 module Main where
 
 import Import
-import App.Component (buildApp)
+import App.Component (buildApp, appServerAsync)
 import App.Component.Logger (logComponentEvents)
 import Control.Monad.Component (ComponentEvent(..), runComponentM1)
 
@@ -15,4 +15,6 @@ main = do
     runComponentM1 (logComponentEvents logFunc)
                    "servant-playground"
                    (buildApp logFunc reloadLogOptions)
-                   (\app -> traceIO "Application Started")
+                   (\app -> runRIO app $ do
+                        logInfo "Application Started"
+                        wait (appServerAsync app))

@@ -36,6 +36,7 @@ etc/entries:
 
     password:
       etc/spec:
+        default: changeme
         type: string
         sensitive: true
         env: APP_DB_PASSWORD

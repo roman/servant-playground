@@ -18,4 +18,4 @@ main = do
       (logComponentEvents logFunc)
       "servant-playground"
       (buildApp logFunc reloadLogOptions)
-      (\app -> traceIO "Application Started")
+      (\app -> runRIO app $ logInfo "Application Started")

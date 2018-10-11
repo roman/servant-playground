@@ -27,6 +27,9 @@ data Application
   , appServerAsync  :: !(Async ())
   }
 
+instance HasLogFunc Application where
+  logFuncL = lens appLogFunc (\app appLogFunc -> app {appLogFunc})
+
 buildApp :: LogFunc -> (LogOptions -> IO ()) -> ComponentM Application
 buildApp logFunc reloadLogOptions = do
   (configRef, reloadConfig, configWarnings) <- buildConfig
